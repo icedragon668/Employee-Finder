@@ -1,0 +1,25 @@
+{
+  "name": "employee-finder",
+  "version": "0.1.0",
+  "description": "employee list with survey to macth similar",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icedragon668/Employee-Finder.git"
+  },
+  "author": "Kori",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icedragon668/Employee-Finder/issues"
+  },
+  "homepage": "https://github.com/icedragon668/Employee-Finder#readme"
+}
