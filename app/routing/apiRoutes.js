@@ -15,7 +15,7 @@ module.exports = function(app) {
     });
 
     app.post('/api/employees', function(req,res) {
-        datalist.push(req.body) //?? known incomplete, guessing this has to do with json file instead of js files
+        data.push(req.body) //?? known incomplete, guessing this has to do with json file instead of js files
         res.json(data)
     });
 };
@@ -56,3 +56,34 @@ module.exports = function (app) {
   });
 }
 */
+
+/* more reference
+// Displays a single employee, or shows 'No employee found'
+app.get('/api/employees/:employee', function(req, res) {
+  // Grab the selected parameter
+  const chosen = req.params.employee;
+  console.log(chosen);
+
+  // Filter to show only the selected employee
+  for (let i = 0; i < employees.length; i++) {
+    if (chosen === employees[i].routeName) {
+      return res.json(employees[i]);
+    }
+  }
+
+  // Otherwise display 'No employee found'
+  return res.send('No employee found');
+});
+///
+  app.post('/api/tables', function (req, res) {
+    if (tableList.length < 5) {
+      tableList.push(req.body); 
+    } else {
+      waitingList.push(req.body);
+    }
+
+    res.end();
+  });
+  ///
+
+  */
