@@ -73,11 +73,16 @@ const onClick = function (e) {
     //GoTo() //refactor from stocks
 }
 
+function checkimg(img) { //regular expression, attempt one // the  / / indicates regexp, the \. looks for a ., the (is to check) and | is options
+    return(img.match(/\.(jpeg|jpg|gif|png)$/) != null);  //i think i kinda get it
+}
+
 const validate = function () {
+
     //checks the forms to be not blank, sans image checker (ie a text string will validate)
     if (
         $('#name').val() == 0 ||
-        // $('#photo').val() == 0 ||  //disabled because i couldn't get the image validation working in time
+        checkimg($('#photo').val()) == false || // see (missspeled) checking func above
         $('#q1').val() == null ||
         $('#q2').val() == null ||
         $('#q3').val() == null ||
