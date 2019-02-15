@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+ 
 </head>
 
 <body style="background-color: aliceblue">
@@ -20,22 +26,20 @@
             <h4>Name (Required)
                 <input type="text" id="name" />
             </h4>
-            <h4>Link to Photo Image (Required)
+            <h4>Link to Photo Image (Optional)
                 <input type="text" id="photo" />
             </h4>
 
             <div class="card" style="margin-bottom: 5px">
                 <h3> Question 1</h3>
-                <h4> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor maxime, ex ut id omnis veritatis vel
-                    eos
-                    excepturi incidunt quam temporibus corporis aliquid velit dolorem natus non illo quia quasi!</h4>
+                <h4> Which of these is the most common number in the hex value of your favorite color?</h4>
                 <select class="custom-select" id="q1">
                     <option value selected disabled>Select an Option</option>
-                    <option value="1">1 (Strongly Disagree)</option>
+                    <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
-                    <option value="5">5 (Strongly Agree)</option>
+                    <option value="5">5</option>
                 </select>
             </div>
 
@@ -182,18 +186,44 @@
                 </select>
             </div>
 
-            <input class="btn btn-lg btn-block btn-primary" type="submit" id="submit" />
+            <div class="btn btn-lg btn-block btn-primary"  id="submit">Submit</div>
         </form>
 
         <footer class="footer" style="padding-bottom: 10px; padding-top: 10px">
             <div class="container">
-                <a href="http://localhost:8080/api/employees">API Empoyee List</a> <!--localhost address?-->
+                <a href="http://localhost:8080/api/employees">API Empoyee List</a>
+                <!--localhost address?-->
             </div>
         </footer>
     </div>
+    <!--PULLED: DELETE LATER-->
+    <!--part #$%^ing 3-->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel"><strong>Best Match</strong></h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="bestDisplay">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--part @#$%ing 3-->
+    <!--PULLED: DELETE LATER-->
+    <script src="./js/survey.js"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="js/survey.js"></script>
 
 </html>

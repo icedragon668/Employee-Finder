@@ -1,4 +1,9 @@
-const render = function () {
+const render = function (bestMatch, rVal) {
+    $('#bestDisplay').html(`
+    <h3>${rVal[bestMatch].name}</h3>
+    <img src="${rVal[bestMatch].photo}" />
+    `)
+
     $('#name').val('')
     $('#photo').val('')
     $('#q1').val('')
@@ -11,11 +16,11 @@ const render = function () {
     $('#q8').val('')
     $('#q9').val('')
     $('#q10').val('')
-    console.log("render")
+    $('#myModal').modal('toggle')
 }
 
-const compare = function () {
-    let rVal = getRemoteVal()
+const compare = function (req) {
+    let rVal = req
     let lVal = getLocalVal()
     let diff = 0;
     let Tdiff = 100;
@@ -25,42 +30,27 @@ const compare = function () {
         for (n = 0; n < lVal.length; n++) {
             diff = diff + Math.abs(rVal[i].scores[n] - lVal[n])
         }
-        console.log(rVal[i].name, "is", diff, "than input")
         if (diff == Tdiff) {
             //compare names or something //icebox
-            console.log("equal")
+            // console.log("equal")
         } else if (diff < Tdiff) {
             Tdiff = diff
             bestMatch = i
-            console.log('less')
-        } else {
-            console.log('greater')
-        }
+        } else { }
         diff = 0
     }
-    console.log("compare", bestMatch)
-    render()
+    render(bestMatch, rVal)
 }
 
 const getRemoteVal = function () {
-    let tVal = employeeObject
-    return tVal
-
+    $.ajax({
+        url: "http://localhost:8080/api/employees",
+        method: "GET"
+    }).then(function (req, res) {
+        compare(req)
+    });
 }
 
-/*ABOVE IS TEMP
-//get non-local {obj}
-$.ajax({
-    url: http://localhost:8080/api/employees
-    method: "POST"
-}).then(function (res) {
-    //do stuff
-    //is this the object i need?
-})
-}
-THIS IS THE MVP CODE (INCOMPLETE) */
-
-//local scores to compare
 const getLocalVal = function () {
     const scores = [
         $('#q1').val(),
@@ -79,113 +69,30 @@ const getLocalVal = function () {
 
 const onClick = function (e) {
     e.preventDefault();
-    compare()
-    console.log("onClick")
-    //GoTo()
+    validate()
+    //GoTo() //refactor from stocks
 }
 
+const validate = function () {
+    //checks the forms to be not blank, sans image checker (ie a text string will validate)
+    if (
+        $('#name').val() == 0 ||
+        // $('#photo').val() == 0 ||
+        $('#q1').val() == null ||
+        $('#q2').val() == null ||
+        $('#q3').val() == null ||
+        $('#q4').val() == null ||
+        $('#q5').val() == null ||
+        $('#q6').val() == null ||
+        $('#q7').val() == null ||
+        $('#q8').val() == null ||
+        $('#q9').val() == null ||
+        $('#q10').val() == null
+    ) {
+        console.log("oy, answer the questions")
+    } else {
+        getRemoteVal()
+    }
+}
 
 $('#submit').on('click', onClick)
-
-
-
-/////DELETE ME//////
-//////TEMP DATA//////
-const employeeObject = [
-    {
-        "name": "Ahmed",
-        "photo": "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAq7AAAAJDAwYzI4NTQ4LWYwZWUtNGFkYS1hNTYwLTZjYzkwY2ViZDA3OA.jpg",
-        "scores": [
-            "5",
-            "1",
-            "4",
-            "4",
-            "5",
-            "1",
-            "2",
-            "5",
-            "4",
-            "1"
-        ]
-    },
-    {
-        "name": "Jacob Deming",
-        "photo": "https://pbs.twimg.com/profile_images/691785039043022849/oWsy8LNR.jpg",
-        "scores": [
-            "4",
-            "2",
-            "5",
-            "1",
-            "3",
-            "2",
-            "2",
-            "1",
-            "3",
-            "2"
-        ]
-    },
-    {
-        "name": "Jeremiah Scanlon",
-        "photo": "https://avatars2.githubusercontent.com/u/8504998?v=3&s=460",
-        "scores": [
-            "5",
-            "2",
-            "2",
-            "2",
-            "4",
-            "1",
-            "3",
-            "2",
-            "5",
-            "5"
-        ]
-    },
-    {
-        "name": "Louis T. Delia",
-        "photo": "https://pbs.twimg.com/profile_images/639214960049000449/lNCRC-ub.jpg",
-        "scores": [
-            "3",
-            "3",
-            "4",
-            "2",
-            "2",
-            "1",
-            "3",
-            "2",
-            "2",
-            "3"
-        ]
-    },
-    {
-        "name": "Lou Ritter",
-        "photo": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAkDAAAAJDhhZTI5NTk2LWQzZjUtNDJjZi1hMTM2LTQ3ZjNmYjE0YmY2NA.jpg",
-        "scores": [
-            "4",
-            "3",
-            "4",
-            "1",
-            "5",
-            "2",
-            "5",
-            "3",
-            "1",
-            "4"
-        ]
-    },
-    {
-        "name": "Jordan Biason",
-        "photo": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAisAAAAJGUxYzc4YzA0LWQxMzUtNGI4NS04YTFiLTkwYzM0YTZkNzA2NA.jpg",
-        "scores": [
-            "4",
-            "4",
-            "2",
-            "3",
-            "2",
-            "2",
-            "3",
-            "2",
-            "4",
-            "5"
-        ]
-    }];
-//////TEMP DATA//////

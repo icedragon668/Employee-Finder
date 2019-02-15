@@ -6,7 +6,7 @@ const path = require('path');
 app.use(express.urlencoded({ extended: true })); //why {extended: true} ?
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "./app/public")));
 
 //nearly forgot these
 require('./app/routing/apiRoutes.js')(app);
