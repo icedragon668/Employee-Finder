@@ -89,10 +89,12 @@ const validate = function () {
         $('#q9').val() == null ||
         $('#q10').val() == null
     ) {
-        console.log("oy, answer the questions")
+        $('#error').show()
     } else {
         getRemoteVal()
+        $('#error').hide()
     }
 }
 
+$('#error').hide()
 $('#submit').on('click', onClick)
