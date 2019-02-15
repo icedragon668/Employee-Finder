@@ -77,7 +77,7 @@ const validate = function () {
     //checks the forms to be not blank, sans image checker (ie a text string will validate)
     if (
         $('#name').val() == 0 ||
-        // $('#photo').val() == 0 ||
+        // $('#photo').val() == 0 ||  //disabled because i couldn't get the image validation working in time
         $('#q1').val() == null ||
         $('#q2').val() == null ||
         $('#q3').val() == null ||
