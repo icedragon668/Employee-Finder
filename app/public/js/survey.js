@@ -44,7 +44,7 @@ const compare = function (req) {
 
 const getRemoteVal = function () {
     $.ajax({
-        url: "http://localhost:8080/api/employees",
+        url: "/api/employees",
         method: "GET"
     }).then(function (req, res) {
         compare(req)
